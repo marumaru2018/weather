@@ -4,6 +4,7 @@ import Results from "./components/Results";
 import Title from "./components/Title";
 import { useState } from "react";
 
+// APIキーとURLを環境変数から取得
 const URL = "https://api.weatherapi.com/v1/current.json";
 const APIKEY = import.meta.env.VITE_WEATHER_API_KEY;
 
