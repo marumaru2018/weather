@@ -5,7 +5,7 @@ import Title from "./components/Title";
 import { useState } from "react";
 
 const URL = "https://api.weatherapi.com/v1/current.json";
-const APIKEY = "57aaf08c5d2449ca8d9230211250308";
+const APIKEY = import.meta.env.VITE_WEATHER_API_KEY;
 
 type WeatherDataStateType = {
   country: string;
