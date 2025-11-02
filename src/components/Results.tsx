@@ -11,30 +11,21 @@ type WeatherDataStateType = {
   };
 };
 
-// const Results = (props: WeatherDataPropsType) => {
-//   const { city, country, temperature, condition, icon } = props.weatherData;
-
-const Results = (props: WeatherDataStateType) => {
-  // const Results = ({ weatherData }: WeatherDataPropsType) => {
-  // const { city, country, temperature, condition, icon } = weatherData;
-  // const city = weatherData?.city;
-  // const country = weatherData?.country;
-  // const temperature = weatherData?.temperature;
-  // const condition = weatherData?.condition;
-  // const icon = weatherData?.icon;
+// const Results = (props: WeatherDataStateType) => {
+//   const { city, country, temperature, condition, icon } = props.result;
+const Results = ({ result }: WeatherDataStateType) => {
+  const { city, country, temperature, condition, icon } = result;
 
   return (
     <>
-      {props.result.city && <h2>お天気情報</h2>}
-      {props.result.city && <p>City: {props.result.city}</p>}
-      {props.result.country && <p>Country: {props.result.country}</p>}
-      {props.result.temperature && (
-        <p>Temperature: {props.result.temperature}</p>
-      )}
-      {props.result.condition && (
+      {city && <h2>お天気情報</h2>}
+      {city && <p>City: {city}</p>}
+      {country && <p>Country: {country}</p>}
+      {temperature && <p>Temperature: {temperature}</p>}
+      {condition && (
         <div className="results-condition">
-          <img src={props.result.icon} alt={props.result.condition} />
-          <span>Condition: {props.result.condition}</span>
+          <img src={icon} alt={condition} />
+          <span>Condition: {condition}</span>
         </div>
       )}
     </>
