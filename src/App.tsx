@@ -1,5 +1,6 @@
 import "./App.css";
 import Form from "./components/Form";
+import Loading from "./components/Loading";
 import Results from "./components/Results";
 import Title from "./components/Title";
 import { useState } from "react";
@@ -16,6 +17,7 @@ type WeatherDataStateType = {
   icon: string;
 };
 function App() {
+  const [loading, setLoading] = useState<boolean>(false);
   const [city, setCity] = useState<string>("");
   const [result, setResult] = useState<WeatherDataStateType>({
     country: "",
@@ -26,6 +28,7 @@ function App() {
   });
   const getWeather = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    setLoading(true);
 
     fetch(`${URL}?key=${APIKEY}&q=${city}&aqi=no`)
       .then((response) => response.json())
@@ -53,7 +56,7 @@ function App() {
         console.error("Error fetching weather data:", error);
       })
       .finally(() => {
-        // setLoading(false);
+        setLoading(false);
       });
   };
 
@@ -62,7 +65,7 @@ function App() {
       <div className="container">
         <Title />
         <Form setCity={setCity} getWeather={getWeather} />
-        <Results result={result} />
+        {loading ? <Loading /> : <Results result={result} />}
       </div>
     </div>
   );
